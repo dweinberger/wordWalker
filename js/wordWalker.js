@@ -12,7 +12,8 @@
 
 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
+   David Weinberger, david@weinberger.org
+   Oct. 20, 2014
 
 */
 function Book(img,title,author,subject,year,hollisid,abs,toc){
@@ -31,20 +32,6 @@ var gbookline = [];
 
 function init(){
 
-// 		$.ajax({
-// 			type: "POST",
-// 			
-// 			 url: './php/fetchBooksViaAbstractTest3.php',
-// 			 success: function(r,mode){
-// 					$("#testdiv").html(r);
-// 									},
-// 			error: function(r,mode){
-// 				alert("Oops. Query failed. Click somewhere else.");
-// 			}
-// 	  });
- 
-
-
 	
 	// pressing enter submits the search
 	$("#searchbox").keypress(function(e){
@@ -52,6 +39,7 @@ function init(){
 			startSearch();
 			$("#searchbox").blur(); // remove focus
 			event.preventDefault();
+			return false;
 		}
 	});
 	
@@ -155,16 +143,6 @@ function buttonizeText(txt,section){
 		}
 	}
 
-	// make it clickable
-// 	$('.realword').unbind('click');
-// 	$('.realword').click(function(e){
-// 		 e.stopPropagation();
-// 		//$(this).addClass("listed");
-// 		var id = $(this).attr("id");
-// 		addWord(id);
-// 		
-// 	});
-	
 	// show the search button
 	$("#listsearchbtn").show();
 	$("#searchwordtitle").show(300);
@@ -307,21 +285,10 @@ function displayBook(bk,i){
 	span.setAttribute("class","authorspan");
 	$(span).html(bk["author"].join("; "));
 	$(bookdiv).append(span);
-	// var span = document.createElement("span");
-// 	span.setAttribute("class","subjectspan");
-// 	$(span).html(bk["subject"].join("; "));
-// 	$(bookdiv).append(span);
-	// make div clickable
 	bookdiv.setAttribute("onclick","createClickableText('" + i + "')");
 	// does it have an abstract or TOC
 	if ((bk["toc"] !== undefined) || (bk["abstract"] !== undefined)){
 		$(bookdiv).addClass("hastext");
-		// create button
-	// 	var sp = document.createElement("span");
-// 		var tx = "";
-// 	
-// 		sp.setAttribute("onclick","buttonizeText(" + i + ")");
-// 		$(sp).html("Abstract");
 	}
 	// append this book to the list
 	$("#booklist").append(bookdiv);
@@ -349,8 +316,7 @@ function fetchTocAbstractMatches(){
 	
 	var searchwords = JSON.stringify(wordarray);
 	$("#loading").show();
-	//You could use JSON.stringify(array) to encode your array in JavaScript, and then use $array=json_decode($_POST['jsondata']); in your PHP script to retrieve it.
-	
+		
 		$.ajax({
 			type: "POST",
 			data: {searchwords  : searchwords},
@@ -434,27 +400,6 @@ function toggleButtons(which){
 }
 
 
-function gotoStacklife(el){
-	// el = stacklife button in catcard
-	
-	// get clicked element
-	var clickedbox = document.getElementById(gClickedBox[0] + ":" + gClickedBox[1]);
-	var hollisid = $(clickedbox).attr("hollis");
-				$.ajax({
-					type: "POST",
-					data: {hollisid  : hollisid },
-					 url: './php/getStacklife.php',
-					 success: function(r,mode){
-					 		var surl = "http://stacklife.harvard.edu/item/n/" + r;
-							 window.open(surl,'StackLife from Boogy');        
-						},
-					error: function(r,mode){
-						
-						alert("Unable to launch StackLife.");
-					}
-			  });
-}
-
 function trimdw(s){
   
     var charlist = " '[]{};.,'?$%^&*!+=<>()|\n\\:" + '"'; 
@@ -495,14 +440,3 @@ function trimdw(s){
     s = s.replace(/[|&;$%@"<>!?'=*{}()+,]/g, "");
   return s;
 }
-
-var toc1 = "The influence of circumstances by J. B. P. A. Lamarck.--Four evolutionary laws, by J. B. P. A. Lamarck.--An account of a female of the white race of mankind, by W. C. Wells.--Notes on natural selection, by Patrick Matthew.--An attempt to classify varieties of animals, by E. Blyth.--Vestiges of the natural history of creation, by Robert Chambers.--The introduction of new species, by A. R. Wallace.--On species and varieties, by A. R. Wallace and C. Darwin.--Recapitulation and conclusion, by C. Darwin.";
-
-var toc2="Lamarck, Darwin, and the contemporary debate about levels of selection / Gabriel Motzkin -- Jean-Baptiste Lamarck : from myth to history / Pietro Corsi -- Lamarckian problematics in historical perspective / Snait B. Gissis -- Lamarck, Cuvier, and Darwin on animal behavior and acquired characters / Richard W. Burkhardt Jr. -- The golden age of Lamarckism, 1866-1926 / Sander Gliboff -- Germinal selection : a Weismannian solution to Lamarckian problematics / Charlotte Weissman -- The notions of plasticity and heredity among French neo-Lamarckians (1880-1940) : from complementarity to incompatibility / Laurent Loison -- Lamarckism and Lysenkoism revisited / Nils Roll-Hansen -- Lamarckism and the constitution of sociology / Snait B. Gissis -- The exclusion of soft (\"Lamarckian\") inheritance from the modern synthesis / Snait B. Gissis and Eva Jablonka -- Attitudes to soft inheritance in Great Britain, 1930s-1970s / Marion J. Lamb -- The decline of soft inheritance / Scott Gilbert -- \", \"Why did the modern synthesis give short shrift to \"soft inheritance\"? / Adam Wilkins -- The modem synthesis : discussion -- Lamarckian problematics in biology / Eva Jablonka -- Lamarck's dangerous idea / Stuart A. Newman and Ramray Bhat -- Behavior, stress, and evolution in light of the Novosibirsk selection experiments / Arkady L. Markel and Lyudmila N. Trut -- The role of cellular plasticity in the evolution of regulatory novelty / Erez Braun and Lior David -- Evolutionary implications of individual plasticity / Sonia E. Sultan -- Epigenetic variability in a predator-prey system / Sivan Pearl, Amos Oppenheim, and Nathalie Q. Balaban -- Cellular epigenetic inheritance in the twenty-first century / Eva Jablonka -- An evolutionary role for RNA-mediated epigenetic variation? / Minoo Rassoulzadegan -- Maternal and transgenerational influences on human health / Peter D. Gluckman, Mark A. Hanson, and Tatjana Buklijas -- \", \"Plants : individuals or epigenetic cell populations? / Marcello Buiatti -- Instantaneous genetic and epigenetic alterations in the wheat genome caused by allopolyploidization / Moshe Feldman and Avraham A. Levy -- Lamarckian leaps in the microbial world / Jan Sapp -- Symbionts as an epigenetic source of heritable variation / Scott F. Gilbert -- Lamarckian problematics in the philosophy of biology / Snait B. Gissis and Eva Jablonka -- Mind the gaps : why are niche construction models so rarely used? / Ayelet Shayit and James Griesemer -- Our plastic nature / Paul Griffiths -- The relative significance of epigenetic inheritance in evolution : some philosophical considerations / James Griesemer -- The metastable genome : a Lamarckian organ in a Darwinian world? / Ehud Lamm -- Self-organization, self-assembly, and the inherent activity of matter / Evelyn F. Keller -- Ramifications and future directions / Snait B. Gissis and Eva Jablonka -- \",\"Lamarck on the nervous system : past insights and future perspectives / Simona Ginsburg -- Lamarck's \"Pouvoir de la nature\" demystified : a thermodynamic foundation to Lamarck's concept of progressive evolution / Francis Dov Por -- Prokaryotic epigenetic inheritance and its role in evolutionary genetics / Luisa Hirschbein -- Evolution as progressing complexity / Raphael Falk -- Epigenetics and the \"new biology\" : enlisting in the assault on reductionism / Alfred I. Tauber -- Epigenetic inheritance : where does the field stand today? : what do we still need to know? / Adam Wilkins -- Final discussion -- Appendix A. Mandelstam's poem \"Lamarck\" -- Appendix B. Mechanisms of cell heredity.";
-
-var toc3="Machine generated contents note: Part I. Astronomical Background: 1. High energy astrophysics - an introduction; 2. The stars and stellar evolution; 3. The galaxies; 4. Clusters of galaxies; Part II. Physical Processes: 5. Ionisation losses; 6. Radiation of accelerated charged particles and bremsstrahlung of electrons; 7. The dynamics of charged particles in magnetic fields; 8. Synchrotron radiation; 9. Interactions of high energy photons; 10. Nuclear interactions; 11. Aspects of plasma physics and magnetohydrodynamics; Part III. High Energy Astrophysics in our Galaxy: 12. Interstellar gas and magnetic fields; 13. Dead stars; 14. Accretion power in astrophysics; 15. Cosmic rays; 16. The origin of cosmic rays in our galaxy; 17. The acceleration of high energy particles; Part IV. Extragalactic High Energy Astrophysics: 18. Active galaxies; 19. Black holes in the nuclei of galaxies; 20. The vicinity of the black hole; 21. Extragalactic radio sources; 22. Compact extragalactic sources and superluminal motions; 23. Cosmological aspects of high energy astrophysics; Appendix; References; Index.";
-
-var abs1="Providing students with an in-depth account of the astrophysics of high energy phenomena in the Universe, the third edition of this well-established textbook is ideal for advanced undergraduate and beginning graduate courses in high energy astrophysics. Building on the concepts and techniques taught in standard undergraduate courses, this textbook provides the astronomical and astrophysical background for students to explore more advanced topics. Special emphasis is given to the underlying physical principles of high energy astrophysics, helping students understand the essential physics. Now consolidated into a single-volume treatment, the third edition has been completely rewritten. It covers the most recent discoveries in areas such as gamma-ray bursts, ultra-high energy cosmic rays and ultra-high energy gamma rays. The topics have been rearranged and streamlined to make them more applicable to a wide range of different astrophysical problems\"--\",\"\"Providing students with an in-depth account of the astrophysics of high energy phenomena in the Universe, the third edition of this well-established textbook is ideal for advanced undergraduate and beginning graduate courses in high energy astrophysics. Building on the concepts and techniques taught in standard undergraduate courses, this textbook provides the astronomical and astrophysical background for students to explore more advanced topics. Special emphasis is given to the underlying physical principles of high energy astrophysics, helping students understand the essential physics. The third edition has been completely rewritten, consolidating the previous editions into one volume. It covers the most recent discoveries in areas such as gamma-ray bursts, ultra-high energy cosmic rays and ultra-high energy gamma rays. The topics have been rearranged and streamlined to make them more applicable to a wide range of different astrophysical problems\"--\"";
-
-var abs2="Accession 11972 : referee reports for \"Astro-Physical Journal Letters, 1974-1987 (5 cubic feet, 5 record cartons).\",  \"Accession 12986 : Astrophysical Journal letters, editorial records: accepted and rejected manuscripts, 1987-1992 (4 cubic feet, 4 record cartons).\", \"Accession 13316 : Astrophysical Journal Letters, 1990-1995 (5 cubic feet, 5 record cartons).\", \"Accession 13451 : Astrophysical Journal Letters: accepted letters, 1995-1996 (2 cubic feet, 2 record cartons).\", \"Accession 13580 : Astrophysical Journal Letters, 1994-1997 (3 cubic feet, 3 record cartons).\", \"Accession 13682 : articles accepted to parts 1 and 2 of the Astrophysical Journal Letters, 1996-1997 (8 cubic feet, 8 record cartons).\", \"Accession 13771 : Astrophysical Journal Letters: papers submitted and accepted to parts 1&2, 1994-1998 (8 cubic feet, 8 record cartons).\", \"Accession 13890 : Astrophysical Journal Letters/HCO, 1998 (9 cubic feet, 9 record cartons).\", \"Accession 14068 : papers submitted and accepted to parts 1 & 2 of the \"Astrophysical Journal,\" 1998-1999 (10 cubic feet, 10 record cartons).\", \"Accession 14274 : papers accepted to parts 1 and 2 of the Astrophysical Journal, 1999-2000 (7 cubic feet, 7 record cartons).\", \"Accession 14343 : papers accepted to parts 1 & 2 of the Astrophysical Journal, 2000-2001 (13 cubic feet, 13 record cartons).\", \"Accession 14501 : papers accepted to parts 1 & 2 of the Astrophysical Journal; Astrophysical Journal Letters, 2001 (8 cubic feet, 8 record cartons).\", \"Accession 14705 : papers accepted to parts 1 and 2 of the Astrophysical Journal, 2001-2002 (10 cubic feet, 10 record cartons).\", \"Accession 14752 : Records of Astrophysical Journal Letters: editor's files - papers published in ApJL on October 1 and 10, 2002 (Box 1); papers published in ApJL on October 10 and 20, 2001 (Box 2); papers published in ApJL on November 1, 2001 (Box 3); papers published in ApJL on October 20, November 1, and November 10, 2002 (Box 4); papers published in ApJL on November 20 and December 1, 2002 (Box 5); papers published in ApJL on December 10, 2002 (Box 6); papers accepted for publication in ApJL in December, 2002 (Box 6); papers accepted for publication in ApJL, ca. 2001 (Box 7); papers submitted to ApJL, October, November, and December 2002 (Box 8). All papers are accompanied by referee reports, 2000-2002 (8 cubic feet, 8 record cartons). ";   
-
