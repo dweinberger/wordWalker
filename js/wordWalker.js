@@ -1,4 +1,4 @@
-/* Wikipedia Explorer
+/* WordWalker
 	
 	Dual licensed under the MIT license (below) and GPL license.
 
@@ -53,6 +53,12 @@ function init(){
 			$("#searchbox").blur(); // remove focus
 			event.preventDefault();
 		}
+	});
+	
+	// clicking into searchbox hides the pulldowns
+	$("#searchbox").click(function(e){
+		$("#explanation").slideUp(300);
+		$("#about").slideUp(300);
 	});
 		
 }	

@@ -1,4 +1,8 @@
-// thank you http://blog.teamtreehouse.com/writing-your-own-jquery-plugins
+/* functions to make Harvard LibraryCloud a little easier to work with.
+*   v. 0.2
+*
+*   thank you http://blog.teamtreehouse.com/writing-your-own-jquery-plugins
+*/
 
 (function ( $ ) {
 
@@ -20,13 +24,19 @@
 		
 
 		
-		// -- DATE
+		// -- DATE [returns string]
 		if (action == "date"){
 			var strdate="";
 			var dateArray = []; // the dateIssued we want is always [?] an array
 			var originItem = this[0]["mods"]["originInfo"];
 			if (originItem == undefined){
 				return "";
+			}
+			var dateIssued = originItem["dateIssued"];
+			// If originInfo has dateIssued and it's a string, return it
+			var stype = $.type(dateIssued);
+			if ((stype == "string") || (stype == "number")){
+				return dateIssued;
 			}
 			// originInfo may have dateIssued Array
 			if (originItem["dateIssued"] !== undefined){
@@ -82,7 +92,7 @@
 			return strdate;
 		}
 		
-		// -- SUBJECT
+		// -- SUBJECT [returns array]
 		if (action === "subject"){
 			var subjarray = new Array();
 			var item = this[0]["mods"]["subject"];
