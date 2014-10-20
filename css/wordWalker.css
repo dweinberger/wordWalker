@@ -1,0 +1,223 @@
+#loading {
+   
+    position:   fixed;
+    z-index:    30000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .5 ) 
+                url('../images/waiting.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+#searchwordtitle{
+	font-family: "Open Sans", arial;
+	font-weight: :600px;
+	font-size:16px;
+	color: #480655;
+	display:none;
+}
+#containerdiv{
+	width:400px;
+	float: left;
+}
+#buttondiv{
+	position: absolute;
+	left: 410px;
+}
+#listarea{
+	position:relative;
+	left: 10px;
+}
+#markeduptext{
+	line-height: 2;
+	font-family: "Open Sans", arial;
+	font-size: 14px;
+	position:relative;
+	left: 10px;
+	
+}
+#listsearchbtn, #listclearbtn{
+	border: 1px solid #72C5D9;
+	background-color: #0E1679;
+	color: white;
+	border-radius: 8px;
+	padding: 5px;
+	font-family: "Open Sans", arial;
+	font-size:14px;
+	display: none;
+}
+#listclearbtn{
+	border: 1px solid #72C5D9;
+	background-color: #80A4D4;
+	color: white;
+	margin-left: 12px;
+}
+.resultdiv{
+	border-bottom: 2px solid orange;
+	
+}
+.titlespan{
+	/* background-color: #C4F1A8; */
+	font-family: "Open Sans", arial;
+	font-weight: 700;
+	/* border: 2px solid red; */
+}
+.authorspan{
+	font-family: "Open Sans", arial;
+	font-size:12px;
+	margin-left: 12px;
+	/* 
+background-color: #F1C2D3;
+	border: 2px solid green;
+ */
+}
+.subjectspan{
+	/* background-color: gray; */
+	font-family: "Open Sans", arial;
+	font-size: 11px;
+}
+
+.realword, .listedword, .wordcontrol{
+	color: #004667;
+	font-weight: 700;
+	/* border: 1px solid #2EE3FF; */
+	border-radius: 6px;
+	padding:2px;
+}
+.realword:hover{
+	background-color: #79F4C8;
+}
+.chosen{
+	background-color: yellow;
+}
+.hastext{
+	/* border: 6px solid #671141; */
+}
+.listed{
+	background-color: #FECEE5;
+}
+.listedword{
+	border: 1px solid #FE53F1;
+	font-family: "Open Sans", arial;
+	margin-top: 10px;
+}
+#listedwords{
+	line-height: 1.7;
+}	
+.wordcontrol{
+	font-weight: 700;
+	color: #FE4C62;
+	margin-left: 1px;
+	font-family: "Open Sans", arial;
+}
+#wordcontrol{
+	height:30px;
+	width:60px;
+	border: 2px solid #F4203D;
+	position:absolute;
+	z-index: 13000;
+	/* box sizing puts the border on the inside */
+	box-sizing:border-box;
+  	-moz-box-sizing:border-box;
+  	-webkit-box-sizing:border-box;
+  	-webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	font-family: "Open Sans","Helvetica Neue",verdana,arial,sans serif;
+}
+#authorcontainer,#titlecontainer,#subjectcontainer,#abstractcontainer,#toccontainer{
+	font-weight: 700;
+	color: #0A2A9A;
+	display: none;
+	font-size: 16px;
+	background-color: #A9D4C7;
+}
+#authorcontent,#titlecontent,#subjectcontent,#abstractcontent,#toccontent{
+	font-weight: 400;
+	color: #6B6B6B;
+	font-size: 14px;
+	background-color: white;
+}
+
+#pagetitlediv{
+	width: 100%;
+	height: 40px;
+	background-color:#3B8CFF;
+	color: white;
+	font-family: "Open Sans", "Arial",Verdana, Sans Serif;
+}
+#pagetitle{
+	font-size: 32px;
+	margin-left: 10px;
+}
+#pagesubtitle{
+	font-size 20px;
+	margin-left: 20px;
+}
+#resetbtn,#instructionsbutton,#aboutbutton{
+	font-size 14px;
+	color: #DCE5FF;
+	margin-left: 30px;
+	padding:2px;
+	
+	color: #2B3ABE;
+	border-radius: 4px;
+}
+.hideexplansbtn{
+	width: 100%;
+	background-color: #324380;
+	color:#C2DCFF;
+	font-family: "Open Sans", "Arial",Verdana, Sans Serif;
+	font-weight: 700;
+	font-size: 16px;
+	position:bottom;
+	
+}
+.on{
+	background-color: yellow;
+}
+.off{
+	background-color: #DCE5FF;
+}
+.clickedbook{
+	background-color:#F0EAAA;
+}
+#searchbox{
+	width:300px;
+	height: 30px;
+	font-size: 18px;
+}
+#explanation, #about{
+	margin: auto;
+	position: absolute;
+	top: 50px; left: 50px;
+	right: 50px;
+	z-index: 100000;
+	background-color: #C9F0E9;
+	padding: 5px;
+	-webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	-moz-box-shadow:    7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	box-shadow:         7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+	border: 3px solid #008AF0;
+}
+#about{
+	background-color:#F2C1FD
+}
+
+.explans{
+	font-family: "Open Sans", "Arial",Verdana, Sans Serif;
+	font-size: 14px;
+	
+	margin-top: 8px;
+	
+}
+#bottomspacer{
+	clear: both;
+	width: 100%
+	height: 30px;
+}
+
+
