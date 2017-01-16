@@ -41,13 +41,10 @@
 		The bold-faced words are the ones you can search on. (The other so-called "stop words" are too common. Do you really want to do a search on "and"? Sorry, you can't.) Click on any you would like to search on. You can choose up to ten. You can list the same word more than once, for a reason we're about to explain...
 		</div>
 		<div class="explans"> 
-		When you click the "Look 'em up" button, wordWalker will do a keyword search of the entire Harvard Library collection, typically fetching ten results for each of the words you've listed. Before showing you those results, wordWalker goes through then to find the ten works that have the highest number of occurrences of <em>each</em> of the words you've listed. So, if you listed "diamonds," "sky" and "lucy," a book about "Lucy in the Sky with Diamonds" is more likely to make it into the ten results than a book about diamonds, a book about skies, or a book about sky diamonds (whatever they may be). This is especially true if you listed "lucy" four or five times,  
+		When you click the "Look 'em up" button, wordWalker will do a keyword search of the entire Harvard Library collection, typically fetching ten results for each of the words you've listed. Before showing you those results, wordWalker goes through then to find the ten works that have the highest number of occurrences of <em>each</em> of the words you've listed in their title, subjects, and abstract. So, if you listed "diamonds," "sky" and "lucy," a book about "Lucy in the Sky with Diamonds" is more likely to make it into the ten results than a book about diamonds, a book about skies, or a book about sky diamonds (whatever they may be). This is especially true if you listed "lucy" four or five times. It gives special weight to works retrieved under one search term (say, "diamonds") if the other search terms are used in it. Finally, it gives each use of a search term a weight based on its frequency divided by the total number of words in a work's metadata.  
 		</div>
 		<div class="explans">
-			Note that this is a demo and a prototype. At the moment, it only counts word totals, so works with more words in their records are favored over works with fewer. Still, it may help you discover works that otherwise would have slipped by.
-			</div>
-		<div class="explans"> 
-		To be exact, WordWalker is a demonstration of a pre-release version of Harvard Library Cloud. This app was written by an amateur, so don't expect too much of it.
+			Note that this is a demo and a prototype and an exploration of an idea. Plus, it was written by an amateur, so don't expect too much of it.
 		</div>
 	
 			<div class= "hideexplansbtn" onclick="toggleButtons('explanation')">Hide
@@ -61,6 +58,7 @@
 		</div>
 		<div class="explans">
 						<em>David Weinberger<br>david@weinberger.org<br>October 19, 2014<br>version 0.1</em>
+						<br> Updated Jan. 25, 2017.
 		<div class= "hideexplansbtn" onclick="toggleButtons('about')">Hide</div>
 		</div>
 	</div>
