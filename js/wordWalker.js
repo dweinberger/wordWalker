@@ -347,6 +347,8 @@ function displayBook(bk,i){
 	var bookdiv = document.createElement("div");
 	bookdiv.setAttribute("class","resultdiv");
 	bookdiv.setAttribute("id","book" + i);
+	
+	// title
 	var span = document.createElement("span");
 	span.setAttribute("class","titlespan");
 	if ($.isArray(bk["title"])){
@@ -355,8 +357,8 @@ function displayBook(bk,i){
 	else{
 		$(span).html(bk["title"]);
 	}
-	
-	$(span).html(bk["title"]);
+	$(bookdiv).append(span);
+	$(span).html(bk["author"]);
 	$(bookdiv).append(span);
 	var span = document.createElement("span");
 	span.setAttribute("class","authorspan");
@@ -367,12 +369,19 @@ function displayBook(bk,i){
 		$(span).html(bk["author"]);
 	}
 	
+	// id
+	var span = document.createElement("span");
+	span.setAttribute("class","idspan");
+	$(span).html("<a href=''>" + bk["id"] + "</a>");
+	
 	$(bookdiv).append(span);
 	bookdiv.setAttribute("onclick","createClickableText('" + i + "')");
 	// does it have an abstract or TOC
 	if ((bk["toc"] !== undefined) || (bk["abstract"] !== undefined)){
 		$(bookdiv).addClass("hastext");
 	}
+	
+	
 	// append this book to the list
 	$("#booklist").append(bookdiv);
 	
