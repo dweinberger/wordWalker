@@ -285,8 +285,9 @@ function layoutHollisBooks(resp){
 					}
 				}
 			tempbook["author"] = autharray;
+			
 			// -- hollisid ... unused
-			tempbook["hollisid"] = "1";
+			tempbook["id"] = items[i]["recordInfo"]["recordIdentifier"]["#text"];
 			
 			// -- title
 			var title =  items[i].titleInfo.title;
@@ -305,22 +306,14 @@ function layoutHollisBooks(resp){
 			}
 
 			// -- abstract
-			if (items[i].abstract !== undefined){
-				var abs =  items[i].abstract["#text"];
+			if ('abstract' in items[i]){
+				tempbook["abstract"] =  items[i].abstract["#text"];
 			}
 			else{ 
 				tempbook["abstract"] = "";
 			}
 
-			// -- ToC
-			var toc =  items[i].tableOfContents;
-			if (toc !== undefined){
-				if (toc instanceof Array){
-					toc = toc.join("\n");
-				}
-			}
-			else { toc="";}
-			tempbook["toc"] = toc;
+		
 			
 			
 			displayBook(tempbook, i);
@@ -358,8 +351,10 @@ function displayBook(bk,i){
 		$(span).html(bk["title"]);
 	}
 	$(bookdiv).append(span);
-	$(span).html(bk["author"]);
+	$(span).html(bk["title"]);
 	$(bookdiv).append(span);
+	
+	// -- author
 	var span = document.createElement("span");
 	span.setAttribute("class","authorspan");
 	if ($.isArray(bk["author"])){
@@ -368,11 +363,12 @@ function displayBook(bk,i){
 	else{
 		$(span).html(bk["author"]);
 	}
+	$(bookdiv).append(span);
 	
 	// id
 	var span = document.createElement("span");
 	span.setAttribute("class","idspan");
-	$(span).html("<a href=''>" + bk["id"] + "</a>");
+	$(span).html("<span onclick='alert(\"Link out to " + bk["id"] + " not implemented yet\")'>&nbsp;<img src=\"images/external-link.gif\"></span>");
 	
 	$(bookdiv).append(span);
 	bookdiv.setAttribute("onclick","createClickableText('" + i + "')");
